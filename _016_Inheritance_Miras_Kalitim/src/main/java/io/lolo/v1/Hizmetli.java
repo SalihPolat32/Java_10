@@ -1,4 +1,4 @@
-package io.lolo;
+package io.lolo.v1;
 
 import java.util.Arrays;
 

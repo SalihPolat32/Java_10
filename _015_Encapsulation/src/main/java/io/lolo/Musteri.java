@@ -54,6 +54,7 @@ public class Musteri {
     }
 
     // Yazdırma Bölümü
+    // Annotation
     @Override
     public String toString() {
         return "Musteri{" +
