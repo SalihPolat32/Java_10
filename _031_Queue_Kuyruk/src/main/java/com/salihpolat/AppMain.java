@@ -7,6 +7,9 @@ public class AppMain {
 
     public static void main(String[] args) {
 
+        // Sadece Aynı Tip Verileri Alıyor
+        // Farklı Veri Girince Hata Vermiyor Yazdırınca Hata Veriyor
+
         Queue queue1 = new PriorityQueue();
 
         queue1.add(100);
