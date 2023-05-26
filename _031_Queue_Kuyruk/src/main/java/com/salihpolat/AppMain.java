@@ -24,6 +24,9 @@ public class AppMain {
 
         System.out.println(queue2);
 
+        queue2.remove(); //İlk Giren İlk Çıkar
+        System.out.println(queue2);
+
         Queue queue3 = new PriorityQueue();
 
         queue3.add(3.14);
