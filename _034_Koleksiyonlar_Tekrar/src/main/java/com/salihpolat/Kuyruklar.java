@@ -1,6 +1,7 @@
 package com.salihpolat;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -30,7 +31,7 @@ public class Kuyruklar {
 
         System.out.println("==================================================");
 
-        Queue myArrayDequeList1 = new ArrayDeque(); // null Değeri Almaz
+        Deque myArrayDequeList1 = new ArrayDeque(); // null Değeri Almaz
 
         myArrayDequeList1.add("Aysu"); // 0
         myArrayDequeList1.add("Serkan"); // 1
@@ -44,7 +45,7 @@ public class Kuyruklar {
 
         myArrayDequeList1.peek(); // En Üstteki Değeri Gösterir
 
-        myArrayDequeList1.clear();
+        // myArrayDequeList1.clear();
         // myArrayDequeList1.remove(); // Boş Sınıfta Hata Verir
         myArrayDequeList1.poll(); // En Üstteki Değeri Çıkarır - Boş Sınıfta Hata Vermeden Devam Eder
 
