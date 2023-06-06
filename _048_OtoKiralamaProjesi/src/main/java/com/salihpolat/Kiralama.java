@@ -7,6 +7,7 @@ public class Kiralama {
     private Musteri musteri;
     private Araba araba;
     private Long tarih;
+
     // private Float ucret;
     /*
      * enum kiralama tipi SAATLIK, GUNLUK, AYLIK, YILLIK

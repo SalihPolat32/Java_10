@@ -5,8 +5,8 @@ public class OtoGaleriException extends Exception {
 
     private String mesaj;
 
-    public OtoGaleriException(String message, String mesaj) {
-        super(message);
+    public OtoGaleriException(String mesaj) {
+        super(mesaj);
         this.mesaj = mesaj;
     }
 
