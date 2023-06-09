@@ -1,0 +1,11 @@
+[
+  {
+    "student": {
+      "id": 1,
+      "firstName": "Aysu",
+      "lastName": "ÇAĞIŞLAR",
+      "email": "abcde0@aaa.com",
+      "gender": "Female"
+    }
+  }
+]

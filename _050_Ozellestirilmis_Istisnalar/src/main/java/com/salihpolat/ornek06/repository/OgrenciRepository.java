@@ -23,11 +23,6 @@ public class OgrenciRepository {
         ogrenciListesi.add(new Ogrenci(ad, soyad));
     }
 
-    public void ogrenciGuncelle(Ogrenci ogrenci) {
-
-
-    }
-
     public List<Ogrenci> getOgrenciListesi() {
         return ogrenciListesi;
     }
@@ -36,11 +31,23 @@ public class OgrenciRepository {
         this.ogrenciListesi = ogrenciListesi;
     }
 
-    public Optional<Ogrenci> ogrenciAra(Long id) throws OgrenciException {
+    public void ogrenciGuncelle(Ogrenci ogrenci) {
+
+        Optional<Ogrenci> ogrenciBulunan = ogrenciListesi.stream().filter(ogr -> ogr.getId().equals(ogrenci.getId())).findFirst();
+
+        if (ogrenciBulunan.isPresent()) { //Varlığı Kontrol Eder
+            ogrenciBulunan.get().setAd(ogrenci.getAd());
+            ogrenciBulunan.get().setSoyad(ogrenci.getSoyad());
+        } else {
+            throw new OgrenciException(MesajTipleri.GUNCELLEME_YAPILAMADI);
+        }
+    }
+
+    public Optional<Ogrenci> ogrenciAraId(Long id) throws OgrenciException {
 
         Optional<Ogrenci> ogrenci = ogrenciListesi.stream().filter(ogr -> ogr.getId().equals(id)).findFirst();
 
-        if (ogrenci.isEmpty()) {
+        if (ogrenci.isEmpty()) { // Yokluğu Kontrol Eder
             throw  new OgrenciException(MesajTipleri.ARANAN_BULUNAMADI);
         }
                 return ogrenci;
