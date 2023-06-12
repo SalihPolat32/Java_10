@@ -1,8 +1,8 @@
 package com.salihpolat;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -30,6 +30,21 @@ public class Test {
         ikinciSinifOgrenciIsimleri();
         System.out.println("============================");
         rastgeleOgrenciniNotOrtalamasi();
+        System.out.println("============================");
+        //birinciSinifOrtalamasi();
+        System.out.println("============================");
+        siniflaraGoreOgrenciler();
+        System.out.println("============================");
+        derslereGoreOgretmenler();
+        System.out.println("============================");
+        ogrenciNoyaGoreOgrenciler();
+        System.out.println("============================");
+        ogrencilerinAldiklariDerseGore();
+        System.out.println("============================");
+        gecKalanOgrenciler();
+        System.out.println("============================");
+        sinifSirasi();
+        System.out.println("============================");
     }
 
     public static <T> void listeyeEkle(List<T> list, T object) {
@@ -50,8 +65,15 @@ public class Test {
         ogrenci2.getNotlar().add(84.0);
         ogrenci2.getNotlar().add(77.0);
 
+        Ogrenci ogrenci3 = new Ogrenci("S-3", "Ahmet", 1, EDers.BEDEN_EGITMI);
+        ogrenci3.getDersListesi().add(EDers.COGRAFYA);
+        ogrenci3.getNotlar().add(76.0);
+        ogrenci3.getNotlar().add(58.0);
+        ogrenci3.getNotlar().add(94.0);
+
         listeyeEkle(ogrenciler, ogrenci1);
         listeyeEkle(ogrenciler, ogrenci2);
+        listeyeEkle(ogrenciler, ogrenci3);
 
         System.out.println(ogrenciler);
     }
@@ -91,12 +113,79 @@ public class Test {
         ogrenciler.stream().filter(x -> x.getSinifSeviyesi() == 2).forEach(x -> System.out.println(x.getOgrenciAdi()));
     }
 
-    private static void rastgeleOgrenciniNotOrtalamasi() {
+    public static void rastgeleOgrenciniNotOrtalamasi() {
         Random random = new Random();
         int rastgeleOgrenci = random.nextInt(0, ogrenciler.size());
         // double ortalama = ogrenciler.stream().map(x -> x.getNotlar()).collect(Collectors.averagingDouble(x -> x.get(rastgeleOgrenci)));
         double ortalama2 = ogrenciler.stream().map(x -> x.getNotlar()).mapToDouble(x -> x.get(rastgeleOgrenci)).average().getAsDouble();
 
         System.out.println(ogrenciler.get(rastgeleOgrenci).getOgrenciAdi() + " Ortalaması: " + ortalama2);
+    }
+/*
+    public static void birinciSinifOrtalamasi() {
+
+       Double birinciSinifOrtalamasi;
+        birinciSinifOrtalamasi = ogrenciler.stream().filter(x -> x.getSinifSeviyesi() == 1).map(x -> x.getNotlar())
+                .mapToDouble(Double::doubleValue).average();
+
+        System.out.println(birinciSinifOrtalamasi);
+    }
+*/
+    public static void siniflaraGoreOgrenciler() {
+
+        Map sinifOgrenci = new HashMap();
+        Map sinifOgrenci2 = new HashMap();
+
+        sinifOgrenci = ogrenciler.stream().collect(Collectors.toMap(x -> x.getOgrenciAdi(), x -> x.getSinifSeviyesi()));
+
+        System.out.println(sinifOgrenci);
+    }
+
+    public static void derslereGoreOgretmenler() {
+
+        Map ogretmenDers = new HashMap();
+
+        ogretmenDers = ogretmenler.stream().collect(Collectors.toMap(x -> x.getDersListesi(), x -> x.getAd()));
+
+        System.out.println(ogretmenDers);
+    }
+
+    public static void ogrenciNoyaGoreOgrenciler() {
+
+        Map ogrenciNoOgrenci = new HashMap();
+
+        ogrenciNoOgrenci = ogrenciler.stream().collect(Collectors.toMap(x -> x.getOgrenciAdi(), x -> x.getOgrenciNo()));
+
+        System.out.println(ogrenciNoOgrenci);
+    }
+
+    public static void ogrencilerinAldiklariDerseGore() {
+
+        Map derseGoreOgrenci = new HashMap();
+
+        derseGoreOgrenci = ogrenciler.stream().collect(Collectors.toMap(x -> x.getOgrenciAdi(), x -> x.getDersListesi()));
+
+        System.out.println(derseGoreOgrenci);
+    }
+
+    public static void gecKalanOgrenciler() {
+
+        Stack<Ogrenci> gecKalanlar = new Stack<>();
+
+        gecKalanlar.add(ogrenciler.get(0));
+        gecKalanlar.add(ogrenciler.get(1));
+        gecKalanlar.add(ogrenciler.get(2));
+
+        System.out.println("Son Gelen Öğrenci: " + gecKalanlar.pop().getOgrenciAdi() + " Ceza Olarak Okulun Etrafında 10 Tur Koşacak.");
+        System.out.println("Geç Kalan Öğrenci: " + gecKalanlar.pop().getOgrenciAdi() + " Ceza Olarak Okulun Etrafında 5 Tur Koşacak.");
+    }
+
+    public static void sinifSirasi() {
+
+        Queue sinifSirasi = new ArrayDeque();
+
+        sinifSirasi.add(ogrenciler.stream().map(x -> x.getSinifSeviyesi()).sorted());
+
+        System.out.println(sinifSirasi);
     }
 }
