@@ -1,9 +1,7 @@
-package com.salihpolat;
-
+package com.salihpolat.select;
 import java.sql.*;
 
 public class MySqlConnection {
-
     public static void main(String[] args) throws SQLException {
 
         Connection connection = null;
@@ -13,7 +11,10 @@ public class MySqlConnection {
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/companydb","root","123456789");
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/companydb",
+                    "root",
+                    "123456789");
 
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM customers");
@@ -30,11 +31,11 @@ public class MySqlConnection {
 
             if(resultSet != null){
                 resultSet.close();
-
-            }if(statement != null){
+            }
+            if(statement != null){
                 statement.close();
-
-            }if(connection != null){
+            }
+            if(connection != null){
                 connection.close();
             }
         }

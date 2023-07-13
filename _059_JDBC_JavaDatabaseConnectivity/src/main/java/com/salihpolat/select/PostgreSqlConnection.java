@@ -1,4 +1,4 @@
-package com.salihpolat;
+package com.salihpolat.select;
 
 import java.sql.*;
 
@@ -13,7 +13,7 @@ public class PostgreSqlConnection {
 
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/musteriDB",
+                    "jdbc:postgresql://127.0.0.1:5432/musteriDB",
                     "postgres",
                     "123456789");
 
@@ -21,28 +21,27 @@ public class PostgreSqlConnection {
             String sqlMusteriler = "SELECT * FROM tblmusteri";
             resultSet = statement.executeQuery(sqlMusteriler);
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 System.out.println(resultSet.getInt("id") + " - " + resultSet.getString("ad") + " " + resultSet.getString("soyadi"));
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
-            System.out.println("Hata: "+ e);
+            System.out.println("Hata: " + e);
 
         } finally {
 
-            if(resultSet != null){
+            if (resultSet != null) {
                 resultSet.close();
             }
 
-            if(statement != null){
+            if (statement != null) {
                 statement.close();
             }
 
-            if(connection != null){
+            if (connection != null) {
                 connection.close();
             }
-
         }
     }
 }
