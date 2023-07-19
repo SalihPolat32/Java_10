@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table (name = "CUSTOMER")
 public class Customer {
 
+    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private CustomerDetail customerDetail;
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "CUSTOMER_ID", nullable = false)
@@ -16,9 +19,6 @@ public class Customer {
     private String firstname;
     @Column(name = "LAST_NAME", length = 60)
     private String lastname;
-
-    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private CustomerDetail customerDetail;
 
     public Customer() {
     }
