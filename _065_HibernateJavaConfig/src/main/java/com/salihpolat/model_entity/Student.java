@@ -1,21 +1,21 @@
 package com.salihpolat.model_entity;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;  // for Hibarnete 6
+import javax.persistence.*; // for Hibarnete 5
 
 @Entity
+@Table(name="STUDENT")
 public class Student {
 
-/*
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private String id; // 9c64ff79-c4b5-478d-b691-fd5dbed0dd41
-*/
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id; // 1, 2, 3, 4, 5, ...
-    @Column (name = "FIRST_NAME")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="ID")
+    private int id;
+    @Column(name="FIRST_NAME")
     private String firstName;
+    @Column(name="LAST_NAME")
     private String lastName;
+    @Column(name="EMAIL")
     private String email;
 
     public Student() {
@@ -57,5 +57,16 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Student{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
