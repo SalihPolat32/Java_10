@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -87,13 +88,21 @@ public class AppMain {
 
             System.out.println("=============================-DELETE-=============================");
 
-            query = session.createQuery("DELETE FROM Customer WHERE id =: id");
+            query = session.createQuery("DELETE FROM CustomerDetail WHERE id =: id");
 
             query.setLong("id", 1);
 
             int delete = query.executeUpdate();
 
-            System.out.println("Delete Sonucu: " + delete);
+            System.out.println("Customer Detail Delete Sonucu: " + delete);
+
+            query = session.createQuery("DELETE FROM Customer WHERE id =: id");
+
+            query.setLong("id", 1);
+
+            delete = query.executeUpdate();
+
+            System.out.println("Customer Delete Sonucu: " + delete);
 
             query = session.createQuery("FROM Customer");
 
@@ -101,6 +110,25 @@ public class AppMain {
 
             for (Customer cust : customerList) {
                 System.out.println(cust.getTitle() + " " + cust.getFirstName() + " " + cust.getLastName());
+            }
+
+            System.out.println("=============================-AVERAGE - SUM - MIN - MAX - COUNT-=============================");
+
+            query = session.createQuery("SELECT COUNT(*) FROM Customer");
+
+            Long customerCount = (Long) query.uniqueResult();
+
+            System.out.println("Sistemdeki Toplam Müşteri Sayısı: " + customerCount);
+
+            System.out.println("=============================-JOIN-=============================");
+
+            query = session.createQuery("SELECT c.title, c.firstName, c.lastName, cd.address FROM Customer AS c " +
+                    "INNER JOIN CustomerDetail AS cd ON c.id = cd.id");
+
+            List<Object[]> myList = query.list();
+
+            for (Object[] arr : myList) {
+                System.out.println(Arrays.toString(arr));
             }
 
             transaction.commit();
