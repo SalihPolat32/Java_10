@@ -16,17 +16,17 @@ public class Customer {
     @Column(name = "TITLE", length = 30)
     private String title;
     @Column(name = "FIRST_NAME", length = 60, nullable = false)
-    private String firstname;
+    private String firstName;
     @Column(name = "LAST_NAME", length = 60)
-    private String lastname;
+    private String lastName;
 
     public Customer() {
     }
 
     public Customer(String title, String firstname, String lastname) {
         this.title = title;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstname;
+        this.lastName = lastname;
     }
 
     public CustomerDetail getCustomerDetail() {
@@ -53,19 +53,19 @@ public class Customer {
         this.title = title;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
