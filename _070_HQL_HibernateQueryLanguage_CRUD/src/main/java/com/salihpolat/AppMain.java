@@ -9,10 +9,8 @@ public class AppMain {
 
     public static void main(String[] args) {
 
-        //   System.out.println(UUID.randomUUID());
 
         Student student1 = new Student("Aysu", "ÇAĞIŞLAR","aaa@gmail.com");
-
         Student student2 = new Student("Burak", "DELİCE", "bbb@gmail.com");
         Student student3 = new Student("Mehmet Caner", "ÖKSÜZ", "ccc@gmail.com");
 
@@ -22,6 +20,7 @@ public class AppMain {
         student4.setEmail("ddd@gmail.com");
 
         StudentDao studentDao = new StudentDao();
+        
         studentDao.saveStudent(student1);
         studentDao.saveStudent(student2);
         studentDao.saveStudent(student3);

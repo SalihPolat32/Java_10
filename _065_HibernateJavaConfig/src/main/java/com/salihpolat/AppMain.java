@@ -12,7 +12,6 @@ public class AppMain {
         //   System.out.println(UUID.randomUUID());
 
         Student student1 = new Student("Aysu", "ÇAĞIŞLAR","aaa@gmail.com");
-
         Student student2 = new Student("Burak", "DELİCE", "bbb@gmail.com");
         Student student3 = new Student("Mehmet Caner", "ÖKSÜZ", "ccc@gmail.com");
 

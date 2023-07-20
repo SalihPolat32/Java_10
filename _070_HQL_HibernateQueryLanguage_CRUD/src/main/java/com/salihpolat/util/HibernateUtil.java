@@ -1,7 +1,6 @@
 package com.salihpolat.util;
 
 import com.salihpolat.model_entity.Student;
-import com.salihpolat.model_entity.Teacher;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -41,15 +40,14 @@ public class HibernateUtil {
                 settings.put(Environment.PASS, "123456789");
 */
                 settings.put(Environment.SHOW_SQL, "true");
-                settings.put(Environment.HBM2DDL_AUTO, "create");
-                //  settings.put(Environment.FORMAT_SQL, "true");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
+//                settings.put(Environment.FORMAT_SQL, "true");
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
                 configuration.setProperties(settings);
 
                 configuration.addAnnotatedClass(Student.class);
-                configuration.addAnnotatedClass(Teacher.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties())

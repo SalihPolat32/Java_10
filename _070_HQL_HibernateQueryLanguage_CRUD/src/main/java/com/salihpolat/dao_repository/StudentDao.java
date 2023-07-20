@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class StudentDao {
+
+    // CREAT - INSERT
     public void saveStudent(Student student) {
 
         Transaction transaction = null;
@@ -29,10 +31,11 @@ public class StudentDao {
         }
     }
 
+    // READ ALL - SELECT
     public List<Student> getStudents() {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Student", Student.class).list();
+            return session.createQuery("FROM Student", Student.class).list();
         }
     }
 }
