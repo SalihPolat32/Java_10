@@ -11,6 +11,9 @@ import java.util.List;
 public class StudentDao {
 
     // SAVE - INSERT
+    // SQL'deki normal INSERT deyimine dikkat! HQL onu SQL'deki gibi kullanmaz!
+    // Normal 1 tane kayıt ekleyeceksiniz, eklemeyi session.save(Object) yöntemi ile yaparız.
+    // HQL'deki INSERT sadece toplu veriler eklemek içindir.
     public void saveStudent(Student student) {
 
         Transaction transaction = null;
@@ -32,6 +35,9 @@ public class StudentDao {
         }
     }
 
+    // SQL'deki normal INSERT deyimine dikkat! HQL onu SQL'deki gibi kullanmaz!
+    // Normal 1 tane kayıt ekleyeceksiniz, eklemeyi session.save(Object) yöntemi ile yaparız.
+    // HQL'deki INSERT sadece toplu veriler eklemek içindir.
     public void insertStudent() {
 
         Transaction transaction = null;
@@ -40,7 +46,21 @@ public class StudentDao {
 
             transaction = session.beginTransaction();
 
-            String hql = "INSERT INTO Student (email, firstName, lastName) SELECT firstName, lastName, email FROM Student";
+            // SQL'deki normal INSERT deyimine dikkat! HQL onu SQL'deki gibi kullanmaz!
+            // Normal 1 tane kayıt ekleyeceksiniz, eklemeyi session.save(Object) yöntemi ile yaparız.
+            // HQL'deki INSERT sadece toplu veriler eklemek içindir.
+
+            //Seçilen tablodaki sadece 1 kaydı diğer hedef tabloya eklemek için INSERT kullanımı.
+            String hqlOneRow = "INSERT INTO Student(firstName, lastName, email) " + // HEDEF TABLO
+                    "SELECT firstName, lastName, email FROM Student WHERE id = 1"; // SECILEN TABLO
+
+            //Seçilen tablodaki birden fazla kaydı diğer hedef tabloya eklemek için INSERT kullanımı.
+            String hqlMultiRows = "INSERT INTO Student(firstName, lastName, email) " + // HEDEF TABLO
+                    "SELECT firstName, lastName, email FROM Student where id BETWEEN 1 AND 4"; // SECILEN TABLO
+
+            //Seçilen tablodaki bütün katıtları diğer hedef tabloya eklemek için INSERT kullanımı.
+            String hql = "INSERT INTO Student(firstName, lastName, email) " + // HEDEF TABLO
+                    "SELECT firstName, lastName, email FROM Student";  // SECILEN TABLO
 
             Query query = session.createQuery(hql);
 
@@ -143,12 +163,17 @@ public class StudentDao {
 
             query.setParameter("id", id);
 
-            // FIXME Tekil Sonuç Dönüşü Yap
-            List results = query.getResultList();
+            // liste dönüş için
+/*
+            List results =  query.getResultList();
 
-            if ((results != null) && (!results.isEmpty())) {
+            if((results != null) && (!results.isEmpty())){
                 student = (Student) results.get(0);
             }
+*/
+
+            // tekil dönüş için
+            student = (Student) query.uniqueResult();
 
             transaction.commit();
 
