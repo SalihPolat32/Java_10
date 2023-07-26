@@ -13,7 +13,7 @@ public class EvRepository {
 
     public List<Ev> kiradaOlanEvler(){
 
-        String hql="SELECT e FROM Ev e where e.durum='KIRADA'";
+        String hql="SELECT e FROM Ev e where e.durum = 'KIRADA'";
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
