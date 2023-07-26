@@ -1,0 +1,12 @@
+body {
+    background-color: grey;
+}
+
+div {
+    background-color: red;
+    text-align: center;
+}
+
+p {
+    text-align: left;
+}
