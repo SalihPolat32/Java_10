@@ -20,7 +20,7 @@ public class HibernateUtil {
         if (sessionFactory == null) {
             try {
 
-                Configuration configuration = new Configuration();;
+                Configuration configuration = new Configuration();
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
 

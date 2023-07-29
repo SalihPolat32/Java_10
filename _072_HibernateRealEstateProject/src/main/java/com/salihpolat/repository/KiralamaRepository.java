@@ -12,7 +12,7 @@ public class KiralamaRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            session.createQuery("from Ev ", Kisi.class).list();
+            session.createQuery("FROM Ev", Kisi.class).list();
 
         } catch (Exception e) {
 

@@ -32,15 +32,15 @@ public class AppMain {
         appMain.anaMenu();
 
         //FIXME - Menuler Taşınacak
-        /*
+/*
         AppMenu appMenu = new AppMenu();
         appMenu.anaMenu();
-         */
+*/
     }
 
     private void anaMenu() {
 
-        int secim =0;
+        int secim = 0;
 
         do {
             System.out.println("***************************");
@@ -55,7 +55,7 @@ public class AppMain {
             System.out.println("5- Rapor");
             System.out.println("0- Çıkış");
 
-            secim= scanner.nextInt();
+            secim = scanner.nextInt();
 
             switch (secim) {
                 case 1:
@@ -91,7 +91,7 @@ public class AppMain {
                     break;
             }
 
-        }while (secim!=0);
+        } while (secim != 0);
     }
 
 
@@ -120,7 +120,7 @@ public class AppMain {
 
         Ev ev = Ev.builder()
                 .kat(kat)
-                .yapimYili(LocalDate.of(sene,1,1))
+                .yapimYili(LocalDate.of(sene, 1, 1))
                 .tur(tur)
                 .build();
 
@@ -135,6 +135,7 @@ public class AppMain {
         Ev ev = evController.evAraById(id);
         System.out.println(ev);
     }
+
     private static void evKirala() {
 
         System.out.println("Lütfen Ev Id'sini Giriniz:");
@@ -149,7 +150,7 @@ public class AppMain {
         Long kisiId = scanner.nextLong();
 
         Kisi kisi = kisiController.kisiAraById(kisiId);
-        System.out.println("KİŞİ BİLGİSİ:" + kisi);
+        System.out.println("Kişi Bilgisi:" + kisi);
 
 
         Kiralama kiralama = Kiralama.builder()
@@ -186,7 +187,7 @@ public class AppMain {
 
     private static void rapor() {
 
-        int secim =0;
+        int secim = 0;
 
         do {
 
@@ -198,7 +199,7 @@ public class AppMain {
             System.out.println("2- Boşta/Müsait Olan Evler");
             System.out.println("3- Herhangi Bir Müşterinin Kiraladığı Evler");
 
-            secim= scanner.nextInt();
+            secim = scanner.nextInt();
 
             switch (secim) {
                 case 1:
@@ -224,7 +225,7 @@ public class AppMain {
                 default:
                     break;
             }
-        }while (secim!=0);
+        } while (secim != 0);
     }
 
     private static void kiradakiEvler() {
@@ -235,7 +236,7 @@ public class AppMain {
         for (Ev ev : evlerListesi) {
             //System.out.println(ev);
             System.out.println("Durumu: " + ev.getDurum() + "\t Id: " + ev.getId() + "\t Kat: " + ev.getKat() +
-                    "\t Türü: " + ev.getTur() + "\t Semt: " + ev.getSemt() + "\t Yılı: "+ ev.getYapimYili());
+                    "\t Türü: " + ev.getTur() + "\t Semt: " + ev.getSemt() + "\t Yılı: " + ev.getYapimYili());
         }
     }
 
@@ -247,7 +248,7 @@ public class AppMain {
         for (Ev ev : evlerListesi) {
             //System.out.println(ev);
             System.out.println("Durumu: " + ev.getDurum() + "\t Id: " + ev.getId() + "\t Kat: " + ev.getKat() +
-                    "\t Türü: " + ev.getTur() + "\t Semt: " + ev.getSemt() + "\t Yılı: "+ ev.getYapimYili());
+                    "\t Türü: " + ev.getTur() + "\t Semt: " + ev.getSemt() + "\t Yılı: " + ev.getYapimYili());
         }
 /*
           System.out.println("------------------------------------------");

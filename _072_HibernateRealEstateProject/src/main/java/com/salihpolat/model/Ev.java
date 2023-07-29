@@ -28,7 +28,7 @@ public class Ev {
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private EEvStatus durum =EEvStatus.MUSAIT;
+    private EEvStatus durum = EEvStatus.MUSAIT;
 /*
     @ToString.Exclude
     @OneToMany(mappedBy = "ev", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

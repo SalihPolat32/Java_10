@@ -49,7 +49,7 @@ public class KisiRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            return session.createQuery("from Kisi", Kisi.class).list();
+            return session.createQuery("FROM Kisi", Kisi.class).list();
 
         } catch (Exception e) {
 
@@ -113,7 +113,7 @@ public class KisiRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            System.out.println("KİŞİ DURUMU: " +session.get(Kisi.class, id));
+            System.out.println("Kişi Durumu: " + session.get(Kisi.class, id));
 
             return session.get(Kisi.class, id);
 

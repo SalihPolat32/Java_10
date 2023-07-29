@@ -12,7 +12,7 @@ public class KisiController {
         this.kisiService = new KisiService();
     }
 
-    public Kisi kisiOlustur(Kisi kisi){
+    public Kisi kisiOlustur(Kisi kisi) {
         return kisiService.kisiOlustur(kisi);
     }
 

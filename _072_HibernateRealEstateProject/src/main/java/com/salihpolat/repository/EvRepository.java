@@ -10,17 +10,18 @@ import java.util.List;
 
 public class EvRepository {
 
-    public List<Ev> kiradaOlanEvler(){
+    public List<Ev> kiradaOlanEvler() {
 
-        String hql="SELECT e FROM Ev e where e.durum='KIRADA'";
+        String hql = "SELECT e FROM Ev e WHERE e.durum='KIRADA'";
         Session session = HibernateUtil.getSessionFactory().openSession();
-        TypedQuery<Ev> typedQuery =session.createQuery(hql, Ev.class);
+        TypedQuery<Ev> typedQuery = session.createQuery(hql, Ev.class);
         return typedQuery.getResultList();
     }
 
     public Ev evOlustur(Ev ev) {
 
         Transaction transaction = null;
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
@@ -44,7 +45,7 @@ public class EvRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            System.out.println("EV DURUMU: " +session.get(Ev.class, id));
+            System.out.println("EV DURUMU: " + session.get(Ev.class, id));
 
             return session.get(Ev.class, id);
 
@@ -60,7 +61,7 @@ public class EvRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            return session.createQuery("from Ev WHERE durum = 'KIRADA'", Ev.class).list();
+            return session.createQuery("FROM Ev WHERE durum = 'KIRADA'", Ev.class).list();
 
         } catch (Exception ex) {
 
@@ -75,7 +76,7 @@ public class EvRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            return session.createQuery("from Ev WHERE durum = 'MUSAIT'", Ev.class).list();
+            return session.createQuery("FROM Ev WHERE durum = 'MUSAIT'", Ev.class).list();
 
         } catch (Exception ex) {
 
