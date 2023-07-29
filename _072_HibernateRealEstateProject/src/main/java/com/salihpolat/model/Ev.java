@@ -1,10 +1,7 @@
 package com.salihpolat.model;
 
 import com.salihpolat.model.enums.EEvStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,4 +29,9 @@ public class Ev {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     private EEvStatus durum =EEvStatus.MUSAIT;
+/*
+    @ToString.Exclude
+    @OneToMany(mappedBy = "ev", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Kiralama> kiralamaList;
+*/
 }

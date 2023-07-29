@@ -13,7 +13,10 @@ public class KisiController {
     }
 
     public Kisi kisiOlustur(Kisi kisi){
-
         return kisiService.kisiOlustur(kisi);
+    }
+
+    public Kisi kisiAraById(Long id) {
+        return kisiService.kisiAraById(id);
     }
 }

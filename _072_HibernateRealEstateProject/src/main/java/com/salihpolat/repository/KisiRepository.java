@@ -26,7 +26,6 @@ public class KisiRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-
             e.printStackTrace();
 
         }
@@ -41,7 +40,6 @@ public class KisiRepository {
         } catch (Exception e) {
 
             e.printStackTrace();
-
             return null;
 
         }
@@ -56,7 +54,6 @@ public class KisiRepository {
         } catch (Exception e) {
 
             e.printStackTrace();
-
             return null;
 
         }
@@ -83,7 +80,6 @@ public class KisiRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-
             e.printStackTrace();
 
         }
@@ -106,10 +102,26 @@ public class KisiRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-
             e.printStackTrace();
 
         }
         return kisi;
+    }
+
+
+    public Kisi kisiAraById(Long id) {
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            System.out.println("KİŞİ DURUMU: " +session.get(Kisi.class, id));
+
+            return session.get(Kisi.class, id);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return null;
+
+        }
     }
 }

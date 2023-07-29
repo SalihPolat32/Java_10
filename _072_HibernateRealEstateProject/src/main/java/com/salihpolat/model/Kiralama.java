@@ -23,4 +23,6 @@ public class Kiralama {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Ev ev;
+
+    // private Date kiralamaGunu;
 }
