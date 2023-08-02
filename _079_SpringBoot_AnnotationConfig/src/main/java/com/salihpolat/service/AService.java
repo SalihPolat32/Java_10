@@ -1,5 +1,8 @@
 package com.salihpolat.service;
 
+import org.springframework.stereotype.Service;
+
+@Service("aService")
 public class AService implements SelectService {
 
     @Override

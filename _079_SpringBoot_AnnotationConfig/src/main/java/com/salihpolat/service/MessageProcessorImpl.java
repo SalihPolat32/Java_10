@@ -2,15 +2,14 @@ package com.salihpolat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MessageProcessorImpl implements MessageProcessor {
 
-    private SelectService selectService;
-
     @Autowired
-    public MessageProcessorImpl(@Qualifier("aService") SelectService selectService) {
-        this.selectService = selectService;
-    }
+    @Qualifier("bService")
+    private SelectService selectService;
 
     public void setSelectService(SelectService selectService) {
 
