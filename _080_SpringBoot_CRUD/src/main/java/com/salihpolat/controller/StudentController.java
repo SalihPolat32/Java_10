@@ -16,19 +16,19 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    // http://localhost:8080/api/v1
+
+    @GetMapping
+    public String getSelamlama() {
+        return "Hoşgeldiniz...";
+    }
+
     // http://localhost:8080/api/v1/hello?studentFirstName=ISIM_BILGISI&studentLastName=SOYISIM_BILGISI
 
     @GetMapping("/hello")
     public String getHello(@RequestParam(value = "studentFirstName", defaultValue = "World") String studentFirstName,
                            @RequestParam(value = "studentLastName", defaultValue = "World") String studentLastName) {
         return "Merhaba " + studentFirstName + " " + studentLastName;
-    }
-
-    // http://localhost:8080/api/v1
-
-    @GetMapping
-    public String getSelamlama() {
-        return "Hoşgeldiniz...";
     }
 
     // http://localhost:8080/api/v1/students
