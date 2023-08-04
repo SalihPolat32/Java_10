@@ -46,7 +46,7 @@ public class StudentController {
     // http://localhost:8080/api/v1/students/1
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getOneStudent(@PathVariable(value = "id") Long id)  throws ResourceNotFoundException {
+    public ResponseEntity<Student> getOneStudent(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
 
         return studentService.getOneStudent(id);
     }
@@ -62,7 +62,7 @@ public class StudentController {
 
     @PutMapping("/students/{id}")
     public ResponseEntity<Student> updateOneStudent(@PathVariable(value = "id") Long id,
-                                    @RequestBody Student student) throws ResourceNotFoundException{
+                                                    @RequestBody Student student) throws ResourceNotFoundException {
         Student studentInfo = studentService.getOneStudent(id).getBody();
 
         if (studentInfo != null) {
@@ -79,7 +79,7 @@ public class StudentController {
     // DELETE - http://localhost:8080/api/v1/students
 
     @DeleteMapping("/students/{id}")
-    public Map<String,Boolean> deleteOneStudent(@PathVariable(value = "id") Long id) throws  ResourceNotFoundException{
+    public Map<String, Boolean> deleteOneStudent(@PathVariable(value = "id") Long id) throws ResourceNotFoundException {
         return studentService.deleteOneStudent(id);
     }
 

@@ -23,10 +23,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public ResponseEntity<Student> getOneStudent(Long id)  throws ResourceNotFoundException {
+    public ResponseEntity<Student> getOneStudent(Long id) throws ResourceNotFoundException {
 
         Student student = studentRepository.findById(id)
-                .orElseThrow( ()-> new ResourceNotFoundException("Student Not Found ID : " + id ));
+                .orElseThrow(() -> new ResourceNotFoundException("Student Not Found ID : " + id));
 
         return ResponseEntity.ok().body(student);
     }
@@ -35,24 +35,24 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Map<String,Boolean> deleteOneStudent(Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteOneStudent(Long id) throws ResourceNotFoundException {
 
         Student student = studentRepository.findById(id)
-                .orElseThrow( ()-> new ResourceNotFoundException("Student not found ID : " + id) );
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found ID : " + id));
 
         studentRepository.deleteById(id);
 
-        Map<String,Boolean> response = new HashMap<>();
+        Map<String, Boolean> response = new HashMap<>();
 
-        response.put("Delete",Boolean.TRUE);
+        response.put("Delete", Boolean.TRUE);
 
         return response;
     }
 
-    public ResponseEntity<Student> updateOneStudent(Student studentInfo) throws ResourceNotFoundException{
+    public ResponseEntity<Student> updateOneStudent(Student studentInfo) throws ResourceNotFoundException {
 
         Student student = studentRepository.findById(studentInfo.getId())
-                .orElseThrow( ()-> new ResourceNotFoundException("Student not found ID : " + studentInfo.getId()) );
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found ID : " + studentInfo.getId()));
 
         return ResponseEntity.ok(studentRepository.save(student));
     }
