@@ -10,26 +10,21 @@ import javax.persistence.*;
 @AllArgsConstructor // Dolu constructor oluşturur.
 @ToString
 @Entity
-@Table(name = "tblurun")
-public class Urun {
+@Table(name = "tblauth")
+public class Auth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String ad;
+    @Column(unique = true)
+    private String username;
 
-    String marka;
+    private String email;
 
-    String model;
+    private String password;
 
-    Double fiyat;
+    private Long createAt;
 
-    Double kdv;
-
-    String img;
-
-    String aciklama;
-
-    String birim;
+    private boolean state;
 }

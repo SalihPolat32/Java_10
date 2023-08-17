@@ -4,10 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder // bir sınıftan nesne türetmeyi sağlar.
-@Data //get set metodlarını otomatik tanımlar.
-@NoArgsConstructor //boş constructor oluşturur.
-@AllArgsConstructor //dolu constructor oluşturur.
+@Builder // Bir sınıftan nesne türetmeyi sağlar.
+@Data // get set metodlarını otomatik tanımlar.
+@NoArgsConstructor // Boş constructor oluşturur.
+@AllArgsConstructor // Dolu constructor oluşturur.
 @ToString
 @Entity
 @Table(name = "tblmusteri")
@@ -15,7 +15,6 @@ public class Musteri {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     Long id;
 
     String ad;

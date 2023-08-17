@@ -5,17 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Kaydederken kullanıcıdan alınacak bilgileri içeren DTO
 @Builder // Bir sınıftan nesne türetmeyi sağlar.
 @Data // get set metodlarını otomatik tanımlar.
 @NoArgsConstructor // Boş constructor oluşturur.
 @AllArgsConstructor // Dolu constructor oluşturur.
-public class UrunSaveRequestDto {
+public class DoLoginRequestDto {
 
-    String ad;
+    private String username;
 
-    String marka;
-
-    String model;
-
-    Double fiyat;
+    private String password;
 }
