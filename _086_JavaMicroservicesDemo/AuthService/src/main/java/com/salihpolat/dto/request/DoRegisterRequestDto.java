@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Data // get set metodlarını otomatik tanımlar.
 @NoArgsConstructor // Boş constructor oluşturur.
 @AllArgsConstructor // Dolu constructor oluşturur.
-public class RegisterRequestDto {
+public class DoRegisterRequestDto {
 
     @NotBlank(message = "Kullanıcı Adı Boş Bırakılamaz!!!")
     private String username;

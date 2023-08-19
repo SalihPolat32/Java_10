@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SatisServiceApp {
     public static void main(String[] args) {
 
-        SpringApplication.run(SatisServiceApp.class   );
+        SpringApplication.run(SatisServiceApp.class);
     }
 }

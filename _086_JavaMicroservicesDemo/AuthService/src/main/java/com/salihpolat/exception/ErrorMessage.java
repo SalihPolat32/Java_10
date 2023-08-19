@@ -15,14 +15,11 @@ import java.util.List;
 @Builder
 public class ErrorMessage {
 
-     Integer code;
+    Integer code;
 
-     String message;
-
-     private List<String> fields;
-
-     @Builder.Default
-     private LocalDateTime date = LocalDateTime.now();
-
-     HttpStatus status;
+    String message;
+    HttpStatus status;
+    private List<String> fields;
+    @Builder.Default
+    private LocalDateTime date = LocalDateTime.now();
 }

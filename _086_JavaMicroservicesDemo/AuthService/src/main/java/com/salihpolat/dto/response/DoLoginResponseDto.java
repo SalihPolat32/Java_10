@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Data // get set metodlarını otomatik tanımlar.
 @NoArgsConstructor // Boş constructor oluşturur.
 @AllArgsConstructor // Dolu constructor oluşturur.
-public class MusteriFindAllResponseDto {
+public class DoLoginResponseDto {
 
-    String username;
+    private String id;
 
-    String ad;
-
-    String img;
+    private String username;
 }
