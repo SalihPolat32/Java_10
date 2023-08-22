@@ -7,21 +7,21 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 
-//Kaydederken kullanıcıdan alınacak bilgileri içeren DTO
+// Kaydederken kullanıcıdan alınacak bilgileri içeren DTO
 @Builder // Bir sınıftan nesne türetmeyi sağlar.
 @Data // get set metodlarını otomatik tanımlar.
 @NoArgsConstructor // Boş constructor oluşturur.
 @AllArgsConstructor // Dolu constructor oluşturur.
 public class DoRegisterRequestDto {
 
-    @NotBlank(message = "Kullanıcı Adı Boş Bırakılamaz!!!")
+    @NotBlank(message = "Kullanıcı Adı Boş Geçilemez!")
     private String username;
 
-    // @Email(message = "Geçerli Bir Email Adresi Giriniz!!!")
+    // @Email(message = "Email giriniz")
     private String email;
 
-    // TODO password Regex Yapılacak
+    // TODO password Regex yap
     private String password;
 
-    private String rePassword;
+    private String repassword;
 }

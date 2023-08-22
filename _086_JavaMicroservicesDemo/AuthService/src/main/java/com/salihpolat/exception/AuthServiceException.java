@@ -10,12 +10,14 @@ public class AuthServiceException extends RuntimeException {
     public AuthServiceException(ErrorType type) {
 
         super(type.getMessage());
+
         this.type = type;
     }
 
     public AuthServiceException(ErrorType type, String message) {
 
         super(message);
+
         this.type = type;
     }
 }

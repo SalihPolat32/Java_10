@@ -11,14 +11,13 @@ public class HelloController {
     // http://localhost:9090
     @GetMapping
     public String hello() {
-
-        return "Hello Auth Service";
+        return "Auth Service";
     }
+
 
     // http://localhost:9090/info
     @GetMapping("/info")
     public String info() {
-
         return "INFO: Auth Service";
     }
 }

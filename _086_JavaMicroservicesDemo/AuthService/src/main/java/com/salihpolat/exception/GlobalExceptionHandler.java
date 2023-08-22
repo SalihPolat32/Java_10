@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private ErrorMessage createErrorMesaj(ErrorType eerrorType, Exception exception) {
+
+    private ErrorMessage createErrorMesaj(ErrorType errorType, Exception exception) {
 
         System.out.println("Hata oluştu...." + exception.getMessage());
 
         return ErrorMessage.builder()
-                .code(eerrorType.getCode())
-                .message(eerrorType.getMessage())
+                .code(errorType.getCode())
+                .message(errorType.getMessage())
                 .build();
     }
 

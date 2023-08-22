@@ -21,6 +21,7 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
     private final JwtTokenManager jwtTokenManager;
 
+
     public AuthService(IAuthRepository repository, JwtTokenManager jwtTokenManager) {
 
         super(repository);
@@ -39,6 +40,7 @@ public class AuthService extends ServiceManager<Auth, Long> {
         }
 
         // return    auth.get().getId().toString();
+
         return jwtTokenManager.createToken(auth.get().getId()).get();
     }
 
@@ -52,17 +54,18 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
         save(auth);
 
+        // TODO - DİĞER SERVICE GİDİLECEK
+        //  http://localhost:9093/user/save
+
         return auth;
     }
 
-    // Tokensiz
+    // Tokensız
 /*
     public List<Auth> findAll() {
-
         return repository.findAll();
     }
 */
-
 
     public List<Auth> findAll(String token) {
 
@@ -81,7 +84,9 @@ public class AuthService extends ServiceManager<Auth, Long> {
         }
 
         if (findById(id.get()).isEmpty()) {
+
             throw new AuthServiceException(ErrorType.INVALID_TOKEN); // FIXME
+
         }
 
         return repository.findAll();

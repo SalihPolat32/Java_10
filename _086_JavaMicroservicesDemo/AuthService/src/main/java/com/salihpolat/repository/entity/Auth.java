@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor // Dolu constructor oluşturur.
 @ToString
 @Entity
-@Table(name = "tblauth")
+@Table(name = "tbl_auth")
 public class Auth {
 
     @Id
@@ -19,12 +19,9 @@ public class Auth {
 
     @Column(unique = true)
     private String username;
-
     private String email;
-
     private String password;
 
     private Long createAt;
-
     private boolean state;
 }
