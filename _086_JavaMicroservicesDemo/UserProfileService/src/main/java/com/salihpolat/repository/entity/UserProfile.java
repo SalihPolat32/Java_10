@@ -18,6 +18,7 @@ public class UserProfile {
     private Long id;
 
     private Long authid;
+
     private String username;
     private String email;
 

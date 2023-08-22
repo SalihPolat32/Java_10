@@ -4,6 +4,7 @@ import com.salihpolat.dto.request.DoLoginRequestDto;
 import com.salihpolat.dto.request.DoRegisterRequestDto;
 import com.salihpolat.exception.AuthServiceException;
 import com.salihpolat.exception.ErrorType;
+import com.salihpolat.manager.IUserProfileManager;
 import com.salihpolat.mapper.IAuthMapper;
 import com.salihpolat.repository.IAuthRepository;
 import com.salihpolat.repository.entity.Auth;
@@ -21,14 +22,18 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
     private final JwtTokenManager jwtTokenManager;
 
+    private final IUserProfileManager userProfileManager;
 
-    public AuthService(IAuthRepository repository, JwtTokenManager jwtTokenManager) {
+
+    public AuthService(IAuthRepository repository, JwtTokenManager jwtTokenManager, IUserProfileManager userProfileManager) {
 
         super(repository);
 
         this.repository = repository;
 
         this.jwtTokenManager = jwtTokenManager;
+
+        this.userProfileManager = userProfileManager;
     }
 
     public String doLogin(DoLoginRequestDto dto) {
@@ -54,13 +59,21 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
         save(auth);
 
-        // TODO - DİĞER SERVICE GİDİLECEK
+        // TODO - DİĞER SERVİCE GİDİLECEK
         //  http://localhost:9093/user/save
+/*
+        userProfileManager.save(UserProfileSaveRequestDto.builder()
+                        .authid(auth.getId())
+                        .username(auth.getUsername())
+                        .email(auth.getEmail())
+                        .build() );
+*/
+        userProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
 
         return auth;
     }
 
-    // Tokensız
+    // Tokensiz
 /*
     public List<Auth> findAll() {
         return repository.findAll();
@@ -84,9 +97,7 @@ public class AuthService extends ServiceManager<Auth, Long> {
         }
 
         if (findById(id.get()).isEmpty()) {
-
             throw new AuthServiceException(ErrorType.INVALID_TOKEN); // FIXME
-
         }
 
         return repository.findAll();

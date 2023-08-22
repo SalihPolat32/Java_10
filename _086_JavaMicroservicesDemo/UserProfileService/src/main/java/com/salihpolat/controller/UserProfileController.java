@@ -1,16 +1,15 @@
 package com.salihpolat.controller;
 
 import com.salihpolat.dto.request.UserProfileSaveRequestDto;
+import com.salihpolat.repository.entity.UserProfile;
 import com.salihpolat.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import static com.salihpolat.constant.EndPoints.SAVE;
-import static com.salihpolat.constant.EndPoints.USER;
+import java.util.List;
+
+import static com.salihpolat.constant.EndPoints.*;
 
 //  http://localhost:9093/user
 @RequiredArgsConstructor
@@ -25,5 +24,12 @@ public class UserProfileController {
     public ResponseEntity<Boolean> save(@RequestBody UserProfileSaveRequestDto dto) {
 
         return ResponseEntity.ok(userProfileService.saveDto(dto));
+    }
+
+    //  http://localhost:9093/user/getall
+    @GetMapping(GETALL)
+    public ResponseEntity<List<UserProfile>> findAll() {
+
+        return ResponseEntity.ok(userProfileService.findAll());
     }
 }
