@@ -61,7 +61,7 @@ allprojects {
     }
     dependencies {
         /**
-         * bütün projeye yayılacak bağımlıkları yazıyoruz.
+         * Bütün projeye yayılacak bağımlıkları yazıyoruz.
          * Yazarken libs içindekileri çekiyoruz.
          * Bütün projelere entegre gelecek.
          */
