@@ -32,4 +32,10 @@ public class UserProfileController {
 
         return ResponseEntity.ok(userProfileService.findAll());
     }
+
+    // http://localhost:9093/user/hi
+    @GetMapping("/hi")
+    public String hi() {
+        return "Hi: UserProfile Service";
+    }
 }

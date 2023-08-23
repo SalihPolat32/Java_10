@@ -2,12 +2,10 @@ package com.salihpolat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
-@EnableConfigServer
-public class ConfigServerApp {
+public class ApiGatewayServiceApp {
     public static void main(String[] args) {
-        SpringApplication.run(ConfigServerApp.class);
+        SpringApplication.run(ApiGatewayServiceApp.class);
     }
 }
