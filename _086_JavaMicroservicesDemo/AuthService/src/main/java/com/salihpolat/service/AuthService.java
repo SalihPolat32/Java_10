@@ -6,6 +6,8 @@ import com.salihpolat.exception.AuthServiceException;
 import com.salihpolat.exception.ErrorType;
 import com.salihpolat.manager.IUserProfileManager;
 import com.salihpolat.mapper.IAuthMapper;
+import com.salihpolat.rabbitmq.model.SaveAuthModel;
+import com.salihpolat.rabbitmq.producer.CreateUserProducer;
 import com.salihpolat.repository.IAuthRepository;
 import com.salihpolat.repository.entity.Auth;
 import com.salihpolat.utility.JwtTokenManager;
@@ -24,8 +26,12 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
     private final IUserProfileManager userProfileManager;
 
+    private final CreateUserProducer createUserProducer;
 
-    public AuthService(IAuthRepository repository, JwtTokenManager jwtTokenManager, IUserProfileManager userProfileManager) {
+    public AuthService(IAuthRepository repository,
+                       JwtTokenManager jwtTokenManager,
+                       IUserProfileManager userProfileManager,
+                       CreateUserProducer createUserProducer) {
 
         super(repository);
 
@@ -34,6 +40,8 @@ public class AuthService extends ServiceManager<Auth, Long> {
         this.jwtTokenManager = jwtTokenManager;
 
         this.userProfileManager = userProfileManager;
+
+        this.createUserProducer = createUserProducer;
     }
 
     public String doLogin(DoLoginRequestDto dto) {
@@ -59,16 +67,24 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
         save(auth);
 
-        // TODO - DİĞER SERVİCE GİDİLECEK
+        // DİĞER SERVICE GİDİLİYOR
+
         //  http://localhost:9093/user/save
 /*
         userProfileManager.save(UserProfileSaveRequestDto.builder()
                         .authid(auth.getId())
                         .username(auth.getUsername())
                         .email(auth.getEmail())
-                        .build() );
+                .build() );
 */
-        userProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
+//        userProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
+
+        // Mesajı RabbitMQ'ya gönderdik.
+        createUserProducer.convertAndSend(SaveAuthModel.builder()
+                .authid(auth.getId())
+                .username(auth.getUsername())
+                .email(auth.getEmail())
+                .build());
 
         return auth;
     }
@@ -76,6 +92,7 @@ public class AuthService extends ServiceManager<Auth, Long> {
     // Tokensiz
 /*
     public List<Auth> findAll() {
+
         return repository.findAll();
     }
 */

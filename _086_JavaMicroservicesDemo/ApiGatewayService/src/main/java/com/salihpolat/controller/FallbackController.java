@@ -18,14 +18,14 @@ public class FallbackController {
 
     // http://localhost:9091/fallback/product
     @GetMapping("/product")
-    public  ResponseEntity<String>  fallbackProduct() {
+    public ResponseEntity<String> fallbackProduct() {
 
         return ResponseEntity.ok("Product Service: Şu anda geçici olarak hizmet verememekteyiz.");
     }
 
     // http://localhost:9092/fallback/sale
     @GetMapping("/sale")
-    public  ResponseEntity<String>  fallbackSale() {
+    public ResponseEntity<String> fallbackSale() {
 
         return ResponseEntity.ok("Sale Service: Şu anda geçici olarak hizmet verememekteyiz.");
     }
@@ -33,7 +33,7 @@ public class FallbackController {
 
     // http://localhost:9093/fallback/user
     @GetMapping("/user")
-    public  ResponseEntity<String>  fallbackUser() {
+    public ResponseEntity<String> fallbackUser() {
 
         return ResponseEntity.ok("User Service: Şu anda geçici olarak hizmet verememekteyiz.");
     }
