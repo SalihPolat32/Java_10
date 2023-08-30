@@ -1,0 +1,39 @@
+package com.salihpolat.controller;
+
+import com.salihpolat.dto.request.UserProfileSaveRequestDto;
+import com.salihpolat.repository.entity.UserProfile;
+import com.salihpolat.service.UserProfileService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import static com.salihpolat.constant.EndPoints.*;
+
+//  http://localhost:9100/elastic/user
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(ELASTIC + USER)
+public class UserProfileController {
+
+    private final UserProfileService userProfileService;
+
+    //  http://localhost:9100/elastic/user/save
+    @PostMapping(SAVE)
+    public ResponseEntity<Boolean> save(@RequestBody UserProfileSaveRequestDto dto) {
+
+        return ResponseEntity.ok(userProfileService.saveDto(dto));
+    }
+
+    //  http://localhost:9100/elastic/user/getall
+    @GetMapping(GETALL)
+    public ResponseEntity<Iterable<UserProfile>> findAll() {
+
+        return ResponseEntity.ok(userProfileService.findAll());
+    }
+
+    // http://localhost:9100/elastic/user/hi
+    @GetMapping("/hi")
+    public String hi() {
+        return "Hi: UserProfile Service";
+    }
+}
