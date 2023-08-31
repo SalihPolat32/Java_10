@@ -35,7 +35,6 @@ public class AuthController {
 
         return ResponseEntity.ok(auth);
 */
-
 /*
         Auth auth = authService.save(
                 Auth.builder()
