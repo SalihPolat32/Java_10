@@ -1,7 +1,6 @@
 package com.salihpolat.rabbitmq.consumer;
 
 import com.salihpolat.rabbitmq.model.SaveAuthModel;
-import com.salihpolat.repository.entity.UserProfile;
 import com.salihpolat.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -16,6 +15,9 @@ public class CreateUserConsumer {
     @RabbitListener(queues = "queue-auth")
     public void createFromQueue(SaveAuthModel model) {
 
+        userProfileService.saveRabbit(model);
+
+/*
         userProfileService.save(
                 UserProfile.builder()
                         .authid(model.getAuthid())
@@ -23,5 +25,6 @@ public class CreateUserConsumer {
                         .email(model.getEmail())
                         .build()
         );
+*/
     }
 }

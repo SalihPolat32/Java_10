@@ -27,6 +27,7 @@ public class UserProfileSaveRequestDto {
 
     private String avatar;
 
+
     private Long createAt;
 
     private boolean state;

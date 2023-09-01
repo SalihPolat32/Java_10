@@ -17,16 +17,22 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private Long authid;
 
     private String username;
+
     private String email;
 
     private String ad;
+
     private String address;
+
     private String phone;
+
     private String avatar;
 
     private Long createAt;
+
     private boolean state;
 }

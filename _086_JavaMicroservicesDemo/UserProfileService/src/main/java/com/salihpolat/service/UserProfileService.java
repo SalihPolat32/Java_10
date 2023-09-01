@@ -1,7 +1,9 @@
 package com.salihpolat.service;
 
 import com.salihpolat.dto.request.UserProfileSaveRequestDto;
+import com.salihpolat.manager.IElasticServiceManager;
 import com.salihpolat.mapper.IUserProfileMapper;
+import com.salihpolat.rabbitmq.model.SaveAuthModel;
 import com.salihpolat.repository.IUserProfileRepository;
 import com.salihpolat.repository.entity.UserProfile;
 import com.salihpolat.utility.ServiceManager;
@@ -12,13 +14,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserProfileService extends ServiceManager<UserProfile, Long> {
 
-    private final IUserProfileRepository repository;
+    private final IUserProfileRepository userProfileRepository;
 
-    public UserProfileService(IUserProfileRepository repository) {
+    private final IElasticServiceManager elasticServiceManager;
 
-        super(repository);
+    public UserProfileService(IUserProfileRepository userProfileRepository, IElasticServiceManager elasticServiceManager) {
 
-        this.repository = repository;
+        super(userProfileRepository);
+
+        this.userProfileRepository = userProfileRepository;
+
+        this.elasticServiceManager = elasticServiceManager;
     }
 
     public Boolean saveDto(UserProfileSaveRequestDto dto) {
@@ -59,6 +65,15 @@ public class UserProfileService extends ServiceManager<UserProfile, Long> {
         save(IUserProfileMapper.INSTANCE.toUserProfile(dto));
 
         return true;
+    }
+
+    public void saveRabbit(SaveAuthModel model) {
+
+        UserProfile userProfile = IUserProfileMapper.INSTANCE.toUserProfile(model);
+
+        save(userProfile);
+
+        elasticServiceManager.addUser(userProfile);
     }
 
     @Cacheable(value = "getUpperCase")

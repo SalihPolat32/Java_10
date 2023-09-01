@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface IUserProfileRepository extends ElasticsearchRepository<UserProfile, Long> {
 
     // TODO existsUserProfilesId
-    boolean existsUserProfilesById(Long id);
+    boolean existsUserProfileById(Long id);
 }

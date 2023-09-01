@@ -7,6 +7,7 @@ spring:
   application:
     name: auth-service-application
 
+# #-------------------------------------------------------------
 #server.port: 9090
 #
 #spring:
@@ -25,6 +26,7 @@ spring:
 #    issuer: ${JAVA_ISSUER}
 #    exDate: 300000
 
+# #-------------------------------------------------------------
 #spring:
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
@@ -39,8 +41,9 @@ spring:
 #  secrets:
 #    key: "123456789Abc"
 #    issuer: "KurumAdi"
-#    exDate:  1000L * 60 * 5
+#    exDate:  300000
 
+# #-------------------------------------------------------------
 #spring:
 #  datasource:
 #    url: jdbc:h2:mem:mydemodb

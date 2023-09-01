@@ -15,7 +15,9 @@ public class UserProfile {
     @Id
     private Long id;
 
+
     private Long userProfileId;
+
 
     private Long authid;
 
@@ -30,6 +32,7 @@ public class UserProfile {
     private String phone;
 
     private String avatar;
+
 
     private Long createAt;
 
