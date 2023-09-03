@@ -9,25 +9,13 @@ import lombok.NoArgsConstructor;
 @Data // get set metodlarını otomatik tanımlar.
 @NoArgsConstructor // Boş constructor oluşturur.
 @AllArgsConstructor // Dolu constructor oluşturur.
-public class UserProfileSaveRequestDto {
+public class PagingRequestDto {
 
-    private Long id;
+    private Integer pageSize; // Bir İstekte Listenecek Kayıt Sayısı
 
-    private Long authid;
+    private Integer currentPage;  // Şu Andaki Bulunduğun Sayfa Numarası
 
-    private String username;
+    private String sortParameter; // Hangi Alana Göre Sıralayacağız.
 
-    private String email;
-
-    private String ad;
-
-    private String address;
-
-    private String phone;
-
-    private String avatar;
-
-    private Long createAt;
-
-    private boolean state;
+    private String direction; // ASC A -> Z   0->9,  DESC  Z->A   9->0
 }
