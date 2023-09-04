@@ -29,3 +29,5 @@
 * Filtrelerin peş peşe sıralanmasıyla oluşan yapıdır. (Zincir gibi)
 
 # User Detail:
+
+Sisteme giren login olan kullancı detayları yardımcı metotları var.

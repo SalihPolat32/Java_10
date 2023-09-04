@@ -1,8 +1,11 @@
 package com.salihpolat.utility;
 
-// Bu kısım eğer kullanılacak ise kullanıldıktan sonra bu kısımı yorum satırına almak mantıklı olacaktır.
-// @Component
-// @RequiredArgsConstructor
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+// Bu Kısım Eğer Kullanılacak İse Kullanıldıktan Sonra Bu Kısımı Yorum Satırına Almak Mantıklı Olacaktır.
+@Component
+@RequiredArgsConstructor
 public class TestAndRun {
 /*
     private final UserProfileService userProfileService;
@@ -10,8 +13,8 @@ public class TestAndRun {
     private final IElasticServiceManager elasticServiceManager;
 
     @PostConstruct
-    //Constructor metod çalıştıktan sonra çalışması istenen kodlar bu anotaation ile işaretlenmiş metodun içine yazılır.
-    public void init() { //initialize (başlatma)
+    // Constructor Metod Çalıştıktan Sonra Çalışması İstenen Kodlar Bu Anotation İle İşaretlenmiş Metodun İçine Yazılır.
+    public void init() { // initialize (Başlatma)
 
         new Thread(() -> {
             getUserProfileInfo();
@@ -22,9 +25,9 @@ public class TestAndRun {
 
     private void getUserProfileInfo() {
 
-        List<UserProfile> userProfileList = userProfileService.findAll(); // tüm userprofile datalarını bir liste aktardık.
+        List<UserProfile> userProfileList = userProfileService.findAll(); // Tüm userprofile datalarını Bir Liste Aktardık.
 
-        userProfileList.forEach(elasticServiceManager::addUser); // Eski verileri Postgre’den Elastic’e teker teker aktarma
+        userProfileList.forEach(elasticServiceManager::addUser); // Eski Verileri Postgre’den Elastic’e Teker Teker Aktarma
 
 //        userProfileList.forEach(x->{
 //                      elasticServiceManager.addUser(x);

@@ -29,7 +29,7 @@ public class UserProfileService extends ServiceManager<UserProfile, Long> {
         /**
          * Eğer userprofileid Daha Önceden Kayıtlıysa, Kaydetmesini Engelle.
          */
-        //  if(!iUserProfileRepository.existsUserProfileById(dto.getId()))
+        //  if (!iUserProfileRepository.existsUserProfileById(dto.getId()))
         save(IUserProfileMapper.INSTANCE.toUserProfile(dto));
     }
 
