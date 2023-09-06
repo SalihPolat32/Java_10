@@ -4,6 +4,9 @@ import com.salihpolat.exception.ElasticServiceException;
 import com.salihpolat.exception.ErrorType;
 import com.salihpolat.utility.JwtTokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -18,6 +21,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     JwtTokenManager jwtTokenManager;
 
+    @Autowired
+    JwtUserDetails jwtUserDetails;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -25,31 +31,44 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         System.out.println("Eklediğimiz Filter");
 
+
         if ("/elastic/user/save".equals(request.getRequestURI())) {
-            // Arada Hiçbir İşlem Alamadan Geri Dönüş Yapılıyor.
+            // arada hiçbir işleme alamadan geri dönüş yapılıyor.
             filterChain.doFilter(request, response);
             return;
         }
 
         String bearerToken = request.getHeader("Authorization");
 
-        // System.out.println("Bearer Token : " + bearerToken);
+        // System.out.println("Bearer Token : "+ bearerToken);
 
-        // System.out.println("Bearer Token : " + bearerToken.substring(7));
+        // System.out.println("Bearer Token : "+ bearerToken.substring(7));
 
-        if (bearerToken == null || !bearerToken.startsWith("Bearer ")) {
-            throw new ElasticServiceException(ErrorType.INVALID_TOKEN);
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+            System.out.println("Authentication Nesnesi Boş!");
+            System.out.println("Talep Edilen url: " + request.getRequestURI());
+            if (bearerToken == null || !bearerToken.startsWith("Bearer "))
+                throw new ElasticServiceException(ErrorType.INVALID_TOKEN);
+            System.out.println("Bearer token Tipi Geldi.");
+            String token = bearerToken.substring(7);
+            Optional<Long> authid = jwtTokenManager.getIdFromToken(token);
+            if (authid.isEmpty()) {
+                System.out.println("Authid Boş!");
+                throw new ElasticServiceException(ErrorType.INVALID_TOKEN);
+            }
+            System.out.println("Gelen AuthId: " + authid.get());
+            UserDetails userDetails = jwtUserDetails.loadUserByAuthId(authid.get());
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 
-        String token = bearerToken.substring(7);
+        System.out.println("Authentication Nesnesi Dolu token Tekrar Göndermedi!");
 
-        Optional<Long> authid = jwtTokenManager.getIdFromToken(token);
-
-        if (authid.isEmpty()) {
-            throw new ElasticServiceException(ErrorType.INVALID_TOKEN);
-        }
-
-        // Arada Hiçbir İşlem Alamadan Geri Dönüş Yapılıyor.
+        // Arada Hiçbir İşleme Almadan Geri Dönüş Yapılıyor.
         filterChain.doFilter(request, response);
     }
 }

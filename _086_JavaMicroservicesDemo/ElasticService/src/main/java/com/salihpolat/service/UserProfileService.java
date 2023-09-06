@@ -10,7 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserProfileService extends ServiceManager<UserProfile, Long> {
@@ -59,5 +62,18 @@ public class UserProfileService extends ServiceManager<UserProfile, Long> {
         }
 
         return iUserProfileRepository.findAll(pageable);
+    }
+
+    public Optional<UserProfile> findUserByAuthId(Long authid) {
+
+        return iUserProfileRepository.findOptionalByAuthid(authid);
+    }
+
+
+    public ResponseEntity<Void> deleteByAuthId(Long authid) {
+
+        iUserProfileRepository.deleteOptionalByAuthid(authid);
+
+        return null;
     }
 }

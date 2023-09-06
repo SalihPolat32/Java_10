@@ -16,6 +16,11 @@ public class EndPoints {
     public static final String GETALLPAGE = "/getallpage";
 
 
+    public static final String GETALLVIP = "/getallvip";
+
+    public static final String GETALLMANAGER = "/getallmanager";
+
+
     public static final String SAVE = "/save";
 
     public static final String UPDATE = "/update";

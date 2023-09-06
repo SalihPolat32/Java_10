@@ -17,6 +17,7 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private Long authid;
 
     private String username;
@@ -30,6 +31,7 @@ public class UserProfile {
     private String phone;
 
     private String avatar;
+
 
     private Long createAt;
 

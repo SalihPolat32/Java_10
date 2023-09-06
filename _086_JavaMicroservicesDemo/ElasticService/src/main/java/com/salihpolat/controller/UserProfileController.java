@@ -7,6 +7,7 @@ import com.salihpolat.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static com.salihpolat.constant.EndPoints.*;
@@ -20,14 +21,6 @@ public class UserProfileController {
     private final UserProfileService userProfileService;
 
     //  http://localhost:9100/elastic/user/save
-/*
-   @PostMapping(SAVE)
-   public ResponseEntity<Boolean> save(@RequestBody UserProfileSaveRequestDto dto){
-
-       return ResponseEntity.ok(userProfileService.saveDto(dto));
-   }
-*/
-
     @PostMapping(SAVE)
     public ResponseEntity<Void> addUser(@RequestBody UserProfileSaveRequestDto dto) {
 
@@ -55,5 +48,30 @@ public class UserProfileController {
     public String hi() {
 
         return "Hi: UserProfile Service";
+    }
+
+    //  http://localhost:9100/elastic/user/getallvip
+    @GetMapping(GETALLVIP)
+    @PreAuthorize("hasAuthority('VIP')")
+    public ResponseEntity<Iterable<UserProfile>> getAllVip() {
+
+        return ResponseEntity.ok(userProfileService.findAll());
+    }
+
+    //  http://localhost:9100/elastic/user/getallmanager
+    @GetMapping(GETALLMANAGER)
+    @PreAuthorize("hasAuthority('MANAGER')")
+    public ResponseEntity<Iterable<UserProfile>> getAllManager() {
+
+        return ResponseEntity.ok(userProfileService.findAll());
+    }
+
+    //  http://localhost:9100/elastic/user/delete
+    @DeleteMapping(DELETE)
+    public ResponseEntity<Void> deleteUser(@RequestBody Long authid) {
+
+        userProfileService.deleteByAuthId(authid);
+
+        return ResponseEntity.ok().build();
     }
 }
