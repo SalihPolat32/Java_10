@@ -10,7 +10,6 @@ div {
 .ogrenci1 {
     text-decoration: overline;
     text-transform: lowercase;
-    direction: rtl;
     unicode-bidi: bidi-override;
 }
 
@@ -24,7 +23,6 @@ div {
 
 .ogrenci4 {
     text-transform: uppercase;
-    direction: rtl;
 }
 
 .ogrenci5 {
